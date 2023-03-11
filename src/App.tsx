@@ -1,31 +1,8 @@
 import React, { useState, useEffect } from "react";
+import NavBar from "./Components/NavBar/NavBar";
 import ContactCard from "./Components/ContactCard/ContactCard";
 
-interface ContactObj {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}
-
-const App: React.FC = (): JSX.Element => {
+const App = (): JSX.Element => {
   const [userList, setUserList] = useState([]);
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -34,12 +11,21 @@ const App: React.FC = (): JSX.Element => {
       .catch((error) => console.log(error));
   }, []);
 
+  const [searchFilter, setSearchFilter] = useState("");
+
+  const handleSearch = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setSearchFilter(event.target.value);
+  };
+
   return (
     <div className="App">
       <div>
-        {userList.map((contactObj, i) => (
-          <ContactCard key={i} />
-        ))}
+        <NavBar handleSearch={handleSearch} />
+      </div>
+      <div>
+        <ContactCard userList={userList} searchFilter={searchFilter} />
       </div>
     </div>
   );
