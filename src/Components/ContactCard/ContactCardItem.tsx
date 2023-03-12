@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import "./ContactCard.css";
 import Card from "@mui/material/Card";
 import { ContactObj } from "../../types";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import { DialogActions, Button, Tooltip, Link } from "@mui/material";
+import { DialogActions, Button, Tooltip, Link, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
@@ -22,7 +23,14 @@ const ContactCardItemSX = {
   transition: "all 0.06s linear",
   marginTop: 1,
   marginBottom: 1,
+  height: "100px",
   width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  boxSizing: "border-box",
+  alignItems: "center",
+  padding: 2,
+  // border: 1,
 };
 
 const ContactCardItem = ({ contactObj: contactObj }: Props) => {
@@ -33,9 +41,30 @@ const ContactCardItem = ({ contactObj: contactObj }: Props) => {
   return (
     <div>
       <Card sx={ContactCardItemSX} onClick={handleContactCardClick}>
-        <Avatar />
-        <div>{contactObj.name}</div>
-        <div>{contactObj.phone}</div>
+        <Grid
+          direction="row"
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          container
+        >
+          <Grid
+            display="flex"
+            flex="2"
+            sx={{ flexDirection: { xs: "column", sm: "row" } }}
+          >
+            <Grid flex="1">
+              <Typography>{contactObj.name}</Typography>
+            </Grid>
+            <Grid flex="1">
+              <Typography>{contactObj.phone}</Typography>
+            </Grid>
+          </Grid>
+
+          <Grid flex="0">
+            <Avatar sx={{ width: 70, height: 70 }} />
+          </Grid>
+        </Grid>
       </Card>
       <Dialog open={contactDialogOpen} onClose={handleContactCardClick}>
         <DialogTitle>{contactObj.name}</DialogTitle>

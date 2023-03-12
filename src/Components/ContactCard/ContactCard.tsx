@@ -16,9 +16,9 @@ const ContactCard = ({ userList, searchFilter }: Props) => {
       <Box
         sx={{
           maxHeight: "calc(100vh - 86px)",
-          maxWidth: "600px",
+          maxWidth: "1000px",
           overflow: "auto",
-          overflowY: "scroll",
+          overflowY: "auto",
           m: "auto",
           padding: "10px",
         }}

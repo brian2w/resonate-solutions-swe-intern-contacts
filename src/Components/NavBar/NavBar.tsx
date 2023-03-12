@@ -14,6 +14,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Fab from "@mui/material/Fab";
+import { Grid } from "@mui/material";
 
 type Props = {
   handleSearch: (
@@ -31,10 +32,11 @@ const Search = styled("div")(({ theme }) => ({
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(2),
-    width: "auto",
-  },
+
+  // [theme.breakpoints.up("sm")]: {
+  //   marginLeft: theme.spacing(2),
+  //   width: "auto",
+  // },
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -55,41 +57,51 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
+    // [theme.breakpoints.up("md")]: {
+    //   width: "20ch",
+    // },
   },
 }));
 
 const NavBar = ({ handleSearch }: Props) => {
   return (
     <div>
-      <AppBar position="static" sx={{}}>
+      <AppBar position="static" sx={{ justifyContent: "" }}>
         <Container maxWidth="xl">
-          <Toolbar>
-            <Box>
-              <Fab />
-            </Box>
-            <Box display="flex" sx={{ m: "auto" }}>
-              <Search sx={{ m: "auto" }}>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                  onChange={handleSearch}
-                />
-              </Search>
-            </Box>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { md: "flex" } }}>
-              <Tooltip title="User settings">
-                <IconButton sx={{}} edge="end">
-                  <Avatar alt="Remy Sharp" src="" />
-                </IconButton>
-              </Tooltip>
-            </Box>
+          <Toolbar sx={{}}>
+            <Grid
+              margin="auto"
+              maxWidth="100vw"
+              container
+              spacing={0}
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Box>
+                <Fab />
+              </Box>
+              <Box sx={{ m: "" }}>
+                <Search sx={{ justifyContent: "", border: 1 }}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ "aria-label": "search" }}
+                    onChange={handleSearch}
+                  />
+                </Search>
+              </Box>
+
+              <Box sx={{}}>
+                <Tooltip title="User settings">
+                  <IconButton>
+                    <Avatar alt="Remy Sharp" src="" />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </Grid>
           </Toolbar>
         </Container>
       </AppBar>
