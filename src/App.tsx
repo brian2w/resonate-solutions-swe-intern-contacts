@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ overflow: "hidden" }}>
       <div>
         <NavBar handleSearch={handleSearch} />
       </div>

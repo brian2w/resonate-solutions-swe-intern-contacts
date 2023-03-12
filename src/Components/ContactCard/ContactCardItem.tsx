@@ -5,7 +5,9 @@ import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
+import { DialogActions, Button, Tooltip, Link } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
 
 type Props = {
   contactObj: ContactObj;
@@ -13,10 +15,13 @@ type Props = {
 
 const ContactCardItemSX = {
   "&:hover": {
+    scale: "102%",
     color: "gray",
     backgroundColor: "lightblue",
   },
-  margin: "10px",
+  transition: "all 0.06s linear",
+  marginTop: 1,
+  marginBottom: 1,
   width: "100%",
 };
 
@@ -33,7 +38,21 @@ const ContactCardItem = ({ contactObj: contactObj }: Props) => {
         <div>{contactObj.phone}</div>
       </Card>
       <Dialog open={contactDialogOpen} onClose={handleContactCardClick}>
-        <DialogContent>Contact Details Here</DialogContent>
+        <DialogTitle>{contactObj.name}</DialogTitle>
+        <DialogContent>
+          <Avatar></Avatar>
+          <Typography>Contact Details</Typography>
+          <Tooltip title="Send email">
+            <Link component="a" href={`mailto:${contactObj.email}`}>
+              <Typography>{contactObj.email}</Typography>
+            </Link>
+          </Tooltip>
+          <Typography>{contactObj.phone}</Typography>
+          <Typography>{contactObj.website}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleContactCardClick}>Close</Button>
+        </DialogActions>
       </Dialog>
     </div>
   );

@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import Fab from "@mui/material/Fab";
 
 type Props = {
   handleSearch: (
@@ -63,11 +64,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const NavBar = ({ handleSearch }: Props) => {
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" sx={{}}>
         <Container maxWidth="xl">
           <Toolbar>
-            <Box display="flex" sx={{ display: { md: "flex" } }}>
-              <Search sx={{}}>
+            <Box>
+              <Fab />
+            </Box>
+            <Box display="flex" sx={{ m: "auto" }}>
+              <Search sx={{ m: "auto" }}>
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>

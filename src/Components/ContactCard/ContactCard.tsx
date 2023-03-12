@@ -12,8 +12,17 @@ type Props = {
 const ContactCard = ({ userList, searchFilter }: Props) => {
   let searchFilterRegex = new RegExp(searchFilter.toLowerCase());
   return (
-    <div>
-      <Box sx={{ border: 1, maxWidth: "600px" }}>
+    <div style={{ border: 1 }}>
+      <Box
+        sx={{
+          maxHeight: "calc(100vh - 86px)",
+          maxWidth: "600px",
+          overflow: "auto",
+          overflowY: "scroll",
+          m: "auto",
+          padding: "10px",
+        }}
+      >
         {userList
           .sort((user1, user2) => user1.name.localeCompare(user2.name))
           .filter((user) => user.name.toLowerCase().match(searchFilterRegex))
