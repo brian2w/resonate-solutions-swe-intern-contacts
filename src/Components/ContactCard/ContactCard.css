@@ -1,6 +1,0 @@
-@media (min-width: 600px) {
-  .contact-card-item-short-details {
-    display: row !important;
-    flex-direction: row !important;
-  }
-}

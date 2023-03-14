@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./ContactCard.css";
 import Card from "@mui/material/Card";
 import { ContactObj } from "../../types";
 import Box from "@mui/material/Box";
@@ -8,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import { DialogActions, Button, Tooltip, Link, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Typography from "@mui/material/Typography";
 
 type Props = {
@@ -67,10 +67,28 @@ const ContactCardItem = ({ contactObj: contactObj }: Props) => {
         </Grid>
       </Card>
       <Dialog open={contactDialogOpen} onClose={handleContactCardClick}>
-        <DialogTitle>{contactObj.name}</DialogTitle>
+        <Grid
+          container
+          direction="row"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          textAlign="center"
+          sx={{ padding: "10px", flexDirection: { xs: "column", sm: "row" } }}
+        >
+          <Grid flex="1" container justifyContent="center" alignItems="center">
+            <Avatar sx={{ height: "100px", width: "100px" }}></Avatar>
+          </Grid>
+          <Grid flex="1">
+            <DialogTitle variant="h5" fontWeight="bold">
+              {contactObj.name}
+            </DialogTitle>
+          </Grid>
+        </Grid>
+
+        <DialogTitle>Contact Details</DialogTitle>
+
         <DialogContent>
-          <Avatar></Avatar>
-          <Typography>Contact Details</Typography>
           <Tooltip title="Send email">
             <Link component="a" href={`mailto:${contactObj.email}`}>
               <Typography>{contactObj.email}</Typography>

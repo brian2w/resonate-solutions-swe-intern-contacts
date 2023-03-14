@@ -82,7 +82,7 @@ const NavBar = ({ handleSearch }: Props) => {
                 <Fab />
               </Box>
               <Box sx={{ m: "" }}>
-                <Search sx={{ justifyContent: "", border: 1 }}>
+                <Search sx={{ justifyContent: "" }}>
                   <SearchIconWrapper>
                     <SearchIcon />
                   </SearchIconWrapper>
