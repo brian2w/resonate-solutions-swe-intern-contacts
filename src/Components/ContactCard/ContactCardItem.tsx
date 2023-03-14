@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import { ContactObj } from "../../types";
-import Box from "@mui/material/Box";
+import { Stack } from "@mui/material/";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,6 +9,8 @@ import { DialogActions, Button, Tooltip, Link, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Typography from "@mui/material/Typography";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LaunchIcon from "@mui/icons-material/Launch";
 
 type Props = {
   contactObj: ContactObj;
@@ -74,7 +76,11 @@ const ContactCardItem = ({ contactObj: contactObj }: Props) => {
           justifyContent="space-between"
           alignItems="center"
           textAlign="center"
-          sx={{ padding: "10px", flexDirection: { xs: "column", sm: "row" } }}
+          sx={{
+            padding: "10px",
+            flexDirection: { xs: "column", sm: "row" },
+            marginTop: "15px",
+          }}
         >
           <Grid flex="1" container justifyContent="center" alignItems="center">
             <Avatar sx={{ height: "100px", width: "100px" }}></Avatar>
@@ -86,16 +92,50 @@ const ContactCardItem = ({ contactObj: contactObj }: Props) => {
           </Grid>
         </Grid>
 
-        <DialogTitle>Contact Details</DialogTitle>
+        <DialogTitle sx={{ paddingBottom: 2, fontWeight: "bold" }}>
+          Contact Details
+        </DialogTitle>
 
-        <DialogContent>
+        <DialogContent sx={{ padding: 3 }}>
           <Tooltip title="Send email">
-            <Link component="a" href={`mailto:${contactObj.email}`}>
-              <Typography>{contactObj.email}</Typography>
-            </Link>
+            <Stack direction="row" spacing={1}>
+              <MailOutlineIcon />
+              <Link
+                component="a"
+                href={`mailto:${contactObj.email}`}
+                underline="hover"
+                color="inherit"
+              >
+                <Typography>{contactObj.email}</Typography>
+              </Link>
+            </Stack>
           </Tooltip>
-          <Typography>{contactObj.phone}</Typography>
-          <Typography>{contactObj.website}</Typography>
+          <Tooltip title={`Call ${contactObj.phone}`} sx={{ marginTop: 1 }}>
+            <Stack direction="row" spacing={1}>
+              <PhoneIcon />
+              <Link
+                component="a"
+                href="tel:PHONE_NUM"
+                underline="hover"
+                color="inherit"
+              >
+                <Typography>{contactObj.phone}</Typography>
+              </Link>
+            </Stack>
+          </Tooltip>
+          <Tooltip title={`${contactObj.website}`} sx={{ marginTop: 1 }}>
+            <Stack direction="row" spacing={1}>
+              <LaunchIcon />
+              <Link
+                component="a"
+                href={`http://${contactObj.website}`}
+                underline="hover"
+                color="inherit"
+              >
+                <Typography>{contactObj.website}</Typography>
+              </Link>
+            </Stack>
+          </Tooltip>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleContactCardClick}>Close</Button>

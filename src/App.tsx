@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./Components/NavBar/NavBar";
 import ContactCard from "./Components/ContactCard/ContactCard";
+import { createTheme } from "@mui/system";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
 const App = (): JSX.Element => {
   const [userList, setUserList] = useState([]);
